@@ -1,0 +1,41 @@
+{
+    "name": "bakraj/databasewatcher",
+    "description": ":description",
+    "license": "license",
+    "authors": [
+        {
+            "name": "author name",
+            "email": "author email",
+            "homepage": "author homepage"
+        }
+    ],
+    "homepage": "https://github.com/bakraj/databasewatcher",
+    "keywords": ["Laravel", "DataBaseWatcher"],
+    "require": {
+        "illuminate/support": "~5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0",
+        "orchestra/testbench": "~3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "bakraj\\DataBaseWatcher\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "bakraj\\DataBaseWatcher\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "bakraj\\DataBaseWatcher\\DataBaseWatcherServiceProvider"
+            ],
+            "aliases": {
+                "DataBaseWatcher": "bakraj\\DataBaseWatcher\\Facades\\DataBaseWatcher"
+            }
+        }
+    }
+}
