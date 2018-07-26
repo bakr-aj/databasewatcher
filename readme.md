@@ -1,57 +1,36 @@
-# DataBaseWatcher
+# DataBase Watcher
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
+Laravel package to monitor database request , exposing an API to collect the usage statistics or using the package builtin view to represent the data on graphs using Chartjs. 
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+### install:
 
-## Installation
-
-Via Composer
-
-``` bash
-$ composer require bakraj/databasewatcher
+Require this package with composer using the following command:
+```
+composer require bakraj/databasewatcher
 ```
 
-## Usage
+After updating composer, add the service provider to the  `providers`  array in  `config/app.php`
+```
+$ bakraj\DataBaseWatcher\DataBaseWatcherServiceProvider::class,
+```
+**Laravel 5.5**  uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
 
-## Change log
 
-Please see the [changelog](changelog.md) for more information on what has changed recently.
-
-## Testing
-
-``` bash
-$ composer test
+### Publishing views, assets and config:
+1- publishing all:
+```
+$ php artisan vendor:publish --provider="bakraj\DataBaseWatcher\DataBaseWatcherServiceProvider"
+```
+2- publishing config:
+```
+$ php artisan vendor:publish --tag=databasewatcer.config --force
+```
+3- publishing views:
+```
+$ php artisan vendor:publish --tag=databasewatcer.views --force
+```
+4- publishing assets:
+```
+$ php artisan vendor:publish --tag=databasewatcer.assets --force
 ```
 
-## Contributing
-
-Please see [contributing.md](contributing.md) for details and a todolist.
-
-## Security
-
-If you discover any security related issues, please email author email instead of using the issue tracker.
-
-## Credits
-
-- [author name][link-author]
-- [All Contributors][link-contributors]
-
-## License
-
-license. Please see the [license file](license.md) for more information.
-
-[ico-version]: https://img.shields.io/packagist/v/bakraj/databasewatcher.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/bakraj/databasewatcher.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/bakraj/databasewatcher/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/12345678/shield
-
-[link-packagist]: https://packagist.org/packages/bakraj/databasewatcher
-[link-downloads]: https://packagist.org/packages/bakraj/databasewatcher
-[link-travis]: https://travis-ci.org/bakraj/databasewatcher
-[link-styleci]: https://styleci.io/repos/12345678
-[link-author]: https://github.com/bakraj
-[link-contributors]: ../../contributors]
