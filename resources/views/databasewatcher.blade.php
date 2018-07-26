@@ -42,7 +42,7 @@
             </canvas>
         </div>
 
-        <script src={{asset('vendor/bakraj/databasewatcher/ js/graph.js')}}> 
+        <script src={{asset('vendor/bakraj/databasewatcher/js/graph.js')}}> 
         </script>
     </div>
 </body>
