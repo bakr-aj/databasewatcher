@@ -34,3 +34,40 @@ $ php artisan vendor:publish --tag=databasewatcer.views --force
 $ php artisan vendor:publish --tag=databasewatcer.assets --force
 ```
 
+### API Documentation:
+#### over all statistics:
+  calling the route
+```
+/databasewatcher/overall
+```
+  expected result:
+```
+{
+	"stats":
+		{
+			"2018-07-25":121
+		}
+}
+```
+
+####  specific day statistics:
+calling the route:
+```
+/analyze/{date}
+```
+expected result:
+```
+{
+	"stats":
+		{
+			"2018-07-25":
+				{
+					"hour_request":
+						{
+						"1":3,"2":9
+						},
+						"total":12
+						}
+				}
+	}
+```

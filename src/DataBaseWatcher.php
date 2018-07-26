@@ -74,26 +74,22 @@ class DataBaseWatcher
         foreach ($lines as $index => $line)
         {
             preg_match("/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/",$line,$match);
-            $dateTime[] = (new Carbon(array_first($match)))->hour;
+            $date = new Carbon(array_first($match));
+            $dateTime[] = $date->hour;
         }
-        $dayStats[array_first($match)]['hour_request'] = array_count_values($dateTime);
-        $dayStats[array_first($match)]['total'] = count($dateTime);
+        $dayStats[$date->toDateString()]['hour_request'] = array_count_values($dateTime);
+        $dayStats[$date->toDateString()]['total'] = count($dateTime);
 
         return $dayStats;
     }
     
-    public function day($date)
+    public function stats($date = null)
     {
+        $date = is_null($date) ? now()->toDateString() : $date;
         $data['date'] = json_decode($this->analyze($date)->content());
         $data['overall'] = json_decode($this->overall()->content()) ;
         $data['dates'] = json_decode($this->dates()->content());
         return view('bakraj::databasewatcher')->with(['date'=>$date,'data' => $data]);
-    }
-
-    public function stats($date = null)
-    {
-        $date = is_null($date) ? now()->toDateString() : $date;
-        return $this->day($date);
     }
 
 }
