@@ -3,8 +3,8 @@
 namespace bakraj\DataBaseWatcher;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
+use bakraj\DataBaseWatcher\DataBaseWatcher;
 
 class DataBaseWatcherServiceProvider extends ServiceProvider
 {
@@ -53,8 +53,9 @@ class DataBaseWatcherServiceProvider extends ServiceProvider
         DB::connection()->enableQueryLog();
 
         DB::listen(function ($query) {
-            Log::channel('databasewatcher')->info($query->sql);
+            DataBaseWatcher::log();
         });
+
     }
 
     /**

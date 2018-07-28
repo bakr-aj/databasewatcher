@@ -3,11 +3,16 @@
 namespace bakraj\DataBaseWatcher;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class DataBaseWatcher 
 {
+    protected $path;
+
+    public function __construct()
+    {
+        $this->path = $path = storage_path("logs\databasewatcher.log");
+    }
 
     public function overall()
     {
@@ -90,6 +95,36 @@ class DataBaseWatcher
         $data['overall'] = json_decode($this->overall()->content()) ;
         $data['dates'] = json_decode($this->dates()->content());
         return view('bakraj::databasewatcher')->with(['date'=>$date,'data' => $data]);
+    }
+
+    public static function log()
+    {
+        $statsFile = Storage::disk('databasewatcher')->exists("\logs\databasewatcher.log") ? file_get_contents($this->path) : null ;
+        
+        $stats = json_decode($statsFile, true);
+        
+        $timeStamp = now();
+
+        if(!isset($stats[$timeStamp->toDateString()]["total"]))
+        {
+            $stats[$timeStamp->toDateString()]["total"] = 0; 
+        }
+        
+
+        if(!isset($stats[$timeStamp->toDateString()]["hour_request"][$timeStamp->hour]))
+        {
+            $stats[$timeStamp->toDateString()]["hour_request"][$timeStamp->hour] = 1; 
+            $stats[$timeStamp->toDateString()]["total"] += 1; 
+            $data = json_encode($stats);
+            file_put_contents($this->path,$data);
+        }
+        else
+        {
+            $stats[$timeStamp->toDateString()]["hour_request"][$timeStamp->hour] +=1;
+            $stats[$timeStamp->toDateString()]["total"] += 1; 
+            $data = json_encode($stats);
+            file_put_contents($this->path,$data);
+        }
     }
 
 }
