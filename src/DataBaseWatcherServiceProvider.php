@@ -4,7 +4,6 @@ namespace bakraj\DataBaseWatcher;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
-use bakraj\DataBaseWatcher\DataBaseWatcher;
 
 class DataBaseWatcherServiceProvider extends ServiceProvider
 {
@@ -33,11 +32,11 @@ class DataBaseWatcherServiceProvider extends ServiceProvider
 
             // Publishing the views.
             $this->publishes([
-                __DIR__.'/../resources/views' => base_path('resources/views/vendor/bakraj'),
+                __DIR__.'/../resources/views' => base_path('resources/views/vendor/bakraj/databasewatcher/view'),
             ], 'databasewatcher.views');
             // Publishing assets.
             $this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/bakraj'),
+                __DIR__.'/../resources/assets' => public_path('vendor/bakraj/databasewatcher/assets'),
             ], 'databasewatcher.assets');
 
             // Publishing the translation files.
@@ -53,7 +52,7 @@ class DataBaseWatcherServiceProvider extends ServiceProvider
         DB::connection()->enableQueryLog();
 
         DB::listen(function ($query) {
-            DataBaseWatcher::log();
+            (new DataBaseWatcher)->log();
         });
 
     }
