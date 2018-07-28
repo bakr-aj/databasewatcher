@@ -44,9 +44,9 @@ $ php artisan vendor:publish --tag=databasewatcer.assets --force
 ```
 {
 	"stats":
-		{
-			"2018-07-25":121
-		}
+	{
+		"2018-07-25":121
+	}
 }
 ```
 
@@ -59,15 +59,13 @@ expected result:
 ```
 {
 	"stats":
-		{
-			"2018-07-25":
-				{
-					"hour_request":
-						{
-						"1":3,"2":9
-						},
-						"total":12
-						}
-				}
+	{
+		"hour_request":
+			{
+			"1":3,"2":9
+			},
+		"total":12
 	}
+}
+
 ```
