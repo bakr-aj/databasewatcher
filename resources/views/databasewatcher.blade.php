@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     <!-- <script src="main.js"></script> -->
-    <script src="{{asset('vendor/bakraj/databasewatcher/js/Chart.bundle.js')}}"></script>    
-    <script src="{{asset('vendor/bakraj/databasewatcher/js/jquery.min.js')}}"></script>    
+    <script src="{{asset('vendor/bakraj/databasewatcher/assets/js/Chart.bundle.js')}}"></script>    
+    <script src="{{asset('vendor/bakraj/databasewatcher/assets/js/jquery.min.js')}}"></script>    
 
 
 </head>
@@ -42,7 +42,7 @@
             </canvas>
         </div>
 
-        <script src={{asset('vendor/bakraj/databasewatcher/js/graph.js')}}> 
+        <script src={{asset('vendor/bakraj/databasewatcher/assets/js/graph.js')}}> 
         </script>
     </div>
 </body>
