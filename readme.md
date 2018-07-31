@@ -21,15 +21,11 @@ $ bakraj\DataBaseWatcher\DataBaseWatcherServiceProvider::class,
 ```
 $ php artisan vendor:publish --provider="bakraj\DataBaseWatcher\DataBaseWatcherServiceProvider"
 ```
-2- publishing config:
-```
-$ php artisan vendor:publish --tag=databasewatcer.config --force
-```
-3- publishing views:
+2- publishing views:
 ```
 $ php artisan vendor:publish --tag=databasewatcer.views --force
 ```
-4- publishing assets:
+3- publishing assets:
 ```
 $ php artisan vendor:publish --tag=databasewatcer.assets --force
 ```
