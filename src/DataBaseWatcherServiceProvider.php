@@ -25,11 +25,6 @@ class DataBaseWatcherServiceProvider extends ServiceProvider
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
 
-            // Publishing the configuration file.
-            $this->publishes([
-                __DIR__.'/../config/databasewatcher.php' => config_path('databasewatcher.php'),
-            ], 'databasewatcher.config');
-
             // Publishing the views.
             $this->publishes([
                 __DIR__.'/../resources/views' => base_path('resources/views/vendor/bakraj/databasewatcher/view'),
@@ -48,7 +43,6 @@ class DataBaseWatcherServiceProvider extends ServiceProvider
             // $this->commands([]);
         }
 
-        $this->config();
         DB::connection()->enableQueryLog();
 
         DB::listen(function ($query) {
@@ -64,8 +58,7 @@ class DataBaseWatcherServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/databasewatcher.php', 'databasewatcher');
-
+       
         // Register the service the package provides.
         $this->app->singleton('databasewatcher', function ($app) {
             return new DataBaseWatcher;
@@ -80,13 +73,5 @@ class DataBaseWatcherServiceProvider extends ServiceProvider
     public function provides()
     {
         return ['databasewatcher'];
-    }
-
-    public function config()
-    {
-        // Add new storage disk 
-        app()->config["filesystems.disks.databasewatcher"] = config('databasewatcher.storage_disk');
-        // Add new logging channel
-        app()->config['logging.channels.databasewatcher'] = config('databasewatcher.logging_channel');
     }
 }
